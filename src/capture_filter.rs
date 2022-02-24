@@ -1,4 +1,4 @@
-pub use rust_honey_analyzer_sys::ha_capture_session_range_filter as CaptureFilter;
+pub use rust_honeybee_sys::ha_capture_session_range_filter as CaptureFilter;
 
 fn parse_filter_address(s: &str) -> Result<u64, String> {
     parse_int::parse::<u64>(s)

@@ -1,7 +1,7 @@
 use std::{ptr};
 
 use nix::{unistd::Pid, errno::Errno, sched::CpuSet};
-use rust_honey_analyzer_sys::*;
+use rust_honeybee_sys::*;
 use crate::capture_filter::CaptureFilter;
 
 #[derive(Debug)]

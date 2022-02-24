@@ -2,7 +2,7 @@ use std::ptr;
 
 use libc::c_void;
 use nix::errno::Errno;
-use rust_honey_analyzer_sys::*;
+use rust_honeybee_sys::*;
 
 use crate::pt_decoder_status::PTDecoderStatus;
 

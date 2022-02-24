@@ -10,11 +10,11 @@ use nix::errno::Errno;
 use nix::unistd::Pid;
 use nix::sched::{sched_setaffinity, CpuSet};
 
-use rust_honey_analyzer::example_coverage_info::{CoverageTracker, FullTrace64Bit, TrivialDedupFullTrace64Bit, FullTrace32Bit, TrivialDedupFullTrace32Bit, LessTrivialDedupFullTrace32Bit, XorDiffULeb128CompressedTrace, BlockBTreeSetCoverageInfo, BlockHashSetCoverageInfo, EdgeBTreeSetCoverageInfo, EdgeHashSetCoverageInfo};
-use rust_honey_analyzer::hive::HoneyBeeHive;
-use rust_honey_analyzer::capture_session::CaptureSession;
-use rust_honey_analyzer::capture_filter::parse_capture_filter;
-use rust_honey_analyzer::analysis_session::AnalysisSession;
+use rust_honeybee::example_coverage_info::{CoverageTracker, FullTrace64Bit, TrivialDedupFullTrace64Bit, FullTrace32Bit, TrivialDedupFullTrace32Bit, LessTrivialDedupFullTrace32Bit, XorDiffULeb128CompressedTrace, BlockBTreeSetCoverageInfo, BlockHashSetCoverageInfo, EdgeBTreeSetCoverageInfo, EdgeHashSetCoverageInfo};
+use rust_honeybee::hive::HoneyBeeHive;
+use rust_honeybee::capture_session::CaptureSession;
+use rust_honeybee::capture_filter::parse_capture_filter;
+use rust_honeybee::analysis_session::AnalysisSession;
 
 use std::time::{SystemTime, UNIX_EPOCH};
 

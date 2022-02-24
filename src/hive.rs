@@ -1,7 +1,7 @@
 use std::ffi::CString;
 
 use nix::errno::Errno;
-use rust_honey_analyzer_sys::*;
+use rust_honeybee_sys::*;
 
 pub struct HoneyBeeHive {
     hive: *mut hb_hive,

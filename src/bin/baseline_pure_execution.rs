@@ -4,7 +4,7 @@ use clap::{self, Arg, ValueHint, AppSettings};
 use nix::sys::{personality};
 use nix::errno::Errno;
 
-use rust_honey_analyzer::capture_filter::parse_capture_filter;
+use rust_honeybee::capture_filter::parse_capture_filter;
 
 use std::time::{SystemTime, UNIX_EPOCH};
 

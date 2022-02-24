@@ -1,5 +1,5 @@
 [package]
-name = "rust-honey_analyzer"
+name = "rust-honeybee"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,7 +8,7 @@ edition = "2021"
 # debug = true
 
 [dependencies]
-rust-honey_analyzer-sys = { path = "../rust-honey_analyzer-sys" }
+rust-honeybee-sys = { path = "../rust-honeybee-sys" }
 libc = "0.2.117"
 nix = "0.23.1"
 clap = {version = "3.0.14", features = ["cargo"]}

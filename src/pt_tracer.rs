@@ -27,7 +27,7 @@ fn get_epoch_ms() -> u128 {
 fn io_error(e: Errno) -> std::io::Error {
     std::io::Error::from_raw_os_error(e as i32)
 }
-fn spawn_suspended(cmd: &Command) -> Result<Child, std::io::Error> {
+fn spawn_suspended(cmd: &mut Command) -> Result<Child, std::io::Error> {
     unsafe {
         cmd.pre_exec(|| {
             ptrace::traceme().map_err(io_error)?;
@@ -98,7 +98,7 @@ struct PtTrace {
 }
 
 impl PtTracer {
-    fn trace(&self, task: TracingTask, f: impl FnMut(u64)) -> PtTrace {
+    fn trace(&self, mut task: TracingTask, f: impl FnMut(u64)) -> PtTrace {
         assert!(task.filters.len() <= 4);
         let filters = task.filters
             .iter()
@@ -110,7 +110,7 @@ impl PtTracer {
         let mut capture_session = CaptureSession::new(self.tracing_cpu_id).expect("Could not start capture session");
         capture_session.set_global_buffer_size(self.buffer_count, self.page_power).expect("Could not set global buffer sizes");
 
-        let mut child = spawn_suspended(&task.cmd).expect("Could not spawn child process");
+        let mut child = spawn_suspended(&mut task.cmd).expect("Could not spawn child process");
         pin_process_to_cpu(child.id(), self.tracing_cpu_id);
 
         capture_session.configure_tracing(child.id(), &task.filters[..]).expect("Could not configure tracing!");
@@ -130,17 +130,17 @@ impl PtTracer {
 
 
 
-fn trace_pt(hive: HoneyBee_Hive) -> Result<(), String> {
-    // CAPTURE
+// fn trace_pt(hive: HoneyBeeHive) -> Result<(), String> {
+//     // CAPTURE
 
-    let mut analysis_session = AnalysisSession::new(hive).expect("Could not create analysis session!");
-    analysis_session.reconfigure_with_terminated_trace_buffer(
-        trace,
-        filter.start.try_into().unwrap()
-    ).expect("Failed to reconfigure analysis session");
+//     let mut analysis_session = AnalysisSession::new(hive).expect("Could not create analysis session!");
+//     analysis_session.reconfigure_with_terminated_trace_buffer(
+//         trace,
+//         filter.start.try_into().unwrap()
+//     ).expect("Failed to reconfigure analysis session");
 
-    analysis_session.decode_with_callback(|block| {
-        cov.record_block(block.try_into().unwrap())
-    }).expect("Could not decode trace");
-    Ok(())
-}
+//     analysis_session.decode_with_callback(|block| {
+//         cov.record_block(block.try_into().unwrap())
+//     }).expect("Could not decode trace");
+//     Ok(())
+// }

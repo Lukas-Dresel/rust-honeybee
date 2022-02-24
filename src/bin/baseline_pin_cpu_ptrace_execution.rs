@@ -8,7 +8,7 @@ use nix::errno::Errno;
 use nix::unistd::Pid;
 use nix::sched::{sched_setaffinity, CpuSet};
 
-use rust_honey_analyzer::{
+use rust_honeybee::{
     capture_filter::parse_capture_filter
 };
 

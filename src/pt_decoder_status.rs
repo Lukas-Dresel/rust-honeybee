@@ -1,4 +1,4 @@
-use rust_honey_analyzer_sys::*;
+use rust_honeybee_sys::*;
 
 // /** No error */
 // HA_PT_DECODER_NO_ERROR = 0,
